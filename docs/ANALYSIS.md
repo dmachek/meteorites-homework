@@ -98,15 +98,15 @@ def parse_year(value):
 ```python
 from collections import Counter
 year_counts = Counter(years)
-most_frequent_year, frequency = year_counts.most_common(1)[0]
+max_count = max(year_counts.values())
+most_frequent_year = min(year for year, count in year_counts.items() if count == max_count)
 ```
 
 **Process:**
 1. Extract 'year' field from all entries
-2. Validate year format (convert to integer)
-3. Filter years outside realistic range (1700-2025)
-4. Use Counter to count occurrences
-5. Retrieve year with highest count
+2. Validate year format (convert to integer, skip non-positive values)
+3. Use Counter to count occurrences
+4. Retrieve year with highest count (earliest year on tie)
 
 **Data Validation:**
 - Exclude missing or empty year fields
@@ -203,7 +203,6 @@ year = parse_year(entry.get("year"))
 ### How to Run
 ```bash
 cd analysis
-pip install -r requirements.txt
 python3 meteorite_analysis.py
 ```
 

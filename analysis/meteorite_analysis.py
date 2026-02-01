@@ -76,11 +76,11 @@ def fetch_dataset(url: str) -> List[Dict[str, Any]]:
         print(f"[+] Successfully fetched {len(data)} records\n")
         return data
         
-    except urllib.error.URLError as e:
-        print(f"[-] Connection error: {e.reason}")
-        raise
     except urllib.error.HTTPError as e:
         print(f"[-] HTTP error: {e.code} {e.reason}")
+        raise
+    except urllib.error.URLError as e:
+        print(f"[-] Connection error: {e.reason}")
         raise
     except json.JSONDecodeError as e:
         print(f"[-] Invalid JSON response: {e}")
