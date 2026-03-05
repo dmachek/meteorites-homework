@@ -1,0 +1,9 @@
+# Count the number of records
+curl --no-progress-meter https://dmachek.github.io/meteorites-homework/meteorite_landings.json | jq length
+
+# Select the most massive meteorite
+curl --no-progress-meter https://dmachek.github.io/meteorites-homework/meteorite_landings.json |  jq -r 'max_by(.mass? | tonumber? // 0) | "\(.name) \(.mass)"'
+
+# Count hits by years and select the most frequest year
+curl --no-progress-meter https://dmachek.github.io/meteorites-homework/meteorite_landings.json | jq -r '.[].year[:4]' | sort | uniq -c | sort -nr |  head -1 | awk '{print $2}'
+
