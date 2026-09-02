@@ -1,0 +1,12 @@
+.venv/
+.git/
+.idea/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+Meteorite-Landings.json
+docs/
+
+README.md
+solution.md
